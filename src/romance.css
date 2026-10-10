@@ -1,0 +1,78 @@
+html,
+body,
+#root {
+  min-height: 100%;
+  overflow: hidden;
+  background: #090108;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.app-container {
+  isolation: isolate;
+  height: 100dvh;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 50% 43%, rgba(94, 7, 56, 0.52) 0%, rgba(31, 2, 24, 0.34) 33%, transparent 68%),
+    radial-gradient(ellipse at 8% 92%, rgba(67, 7, 64, 0.35), transparent 43%),
+    linear-gradient(135deg, #10010d 0%, #070006 54%, #16020e 100%);
+}
+
+.app-container::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.2;
+  background-image: radial-gradient(rgba(255, 152, 202, 0.5) 0.55px, transparent 0.7px);
+  background-size: 5px 5px;
+  mask-image: radial-gradient(circle at center, black, transparent 76%);
+}
+
+.background-canvas,
+.heart-canvas,
+.sparkles-canvas {
+  pointer-events: none;
+}
+
+.heart-canvas { z-index: 2; }
+.sparkles-canvas { z-index: 3; }
+
+.glow-orb {
+  filter: blur(72px);
+  opacity: 0.18;
+  mix-blend-mode: screen;
+}
+
+.glow-1 {
+  width: min(56vmax, 610px);
+  height: min(56vmax, 610px);
+  background: #ff147e;
+  top: -12vmax;
+  left: 50%;
+}
+
+.glow-2 {
+  width: min(48vmax, 510px);
+  height: min(48vmax, 510px);
+  background: #a537df;
+  right: -13vmax;
+  bottom: -23vmax;
+  left: auto;
+}
+
+@keyframes pulseGlow {
+  from { opacity: 0.13; transform: translate3d(-3%, -3%, 0) scale(0.9); }
+  to { opacity: 0.24; transform: translate3d(5%, 4%, 0) scale(1.08); }
+}
+
+@media (max-width: 640px) {
+  .glow-orb { filter: blur(48px); opacity: 0.15; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-orb { animation: none; }
+}

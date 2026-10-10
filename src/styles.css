@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #08010a;
+  font-family: "Cinzel", serif;
+  user-select: none;
+}
+
+.app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(
+    circle at center,
+    #1b021a 0%,
+    #0c0112 60%,
+    #050007 100%
+  );
+  overflow: hidden;
+}
+
+/* Шар анімованого фону */
+.background-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Центральний Canvas із серцем та текстом */
+.heart-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* Canvas для следа курсора */
+.sparkles-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Розмиті рожеві неон-плями на тлі */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+  animation: pulseGlow 8s ease-in-out infinite alternate;
+}
+
+.glow-1 {
+  width: 450px;
+  height: 450px;
+  background: #ff0077;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.glow-2 {
+  width: 350px;
+  height: 350px;
+  background: #9900ff;
+  bottom: 10%;
+  left: 30%;
+  animation-delay: -4s;
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 0.35;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
