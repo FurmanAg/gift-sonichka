@@ -5,8 +5,22 @@ const COLORS = ["#ff4c98", "#ff83bb", "#bc5dff", "#ffd1e5"];
 function drawTinyHeart(ctx, x, y, size) {
   ctx.beginPath();
   ctx.moveTo(x, y + size * 0.28);
-  ctx.bezierCurveTo(x - size * 0.72, y - size * 0.38, x - size, y + size * 0.5, x, y + size);
-  ctx.bezierCurveTo(x + size, y + size * 0.5, x + size * 0.72, y - size * 0.38, x, y + size * 0.28);
+  ctx.bezierCurveTo(
+    x - size * 0.72,
+    y - size * 0.38,
+    x - size,
+    y + size * 0.5,
+    x,
+    y + size,
+  );
+  ctx.bezierCurveTo(
+    x + size,
+    y + size * 0.5,
+    x + size * 0.72,
+    y - size * 0.38,
+    x,
+    y + size * 0.28,
+  );
   ctx.fill();
 }
 
@@ -59,7 +73,9 @@ export default function AnimatedBackground() {
       ctx.clearRect(0, 0, width, height);
 
       for (const particle of particles) {
-        const drift = reducedMotion ? 0 : Math.sin(time * 0.00045 + particle.phase) * 0.14;
+        const drift = reducedMotion
+          ? 0
+          : Math.sin(time * 0.00045 + particle.phase) * 0.14;
         particle.x += (particle.speedX + drift) * delta;
         particle.y += particle.speedY * delta;
         if (particle.y < -18) {
@@ -70,7 +86,9 @@ export default function AnimatedBackground() {
         if (particle.x > width + 20) particle.x = -18;
 
         ctx.save();
-        ctx.globalAlpha = particle.opacity * (0.72 + Math.sin(time * 0.001 + particle.phase) * 0.28);
+        ctx.globalAlpha =
+          particle.opacity *
+          (0.72 + Math.sin(time * 0.001 + particle.phase) * 0.28);
         ctx.fillStyle = particle.color;
         if (particle.heart) {
           drawTinyHeart(ctx, particle.x, particle.y, particle.radius * 2.8);
@@ -104,5 +122,7 @@ export default function AnimatedBackground() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="background-canvas" aria-hidden="true" />;
+  return (
+    <canvas ref={canvasRef} className="background-canvas" aria-hidden="true" />
+  );
 }
